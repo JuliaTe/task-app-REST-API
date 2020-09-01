@@ -1,0 +1,19 @@
+{
+  "name": "task-manager-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliaTe/task-app-REST-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaTe/task-app-REST-API/issues"
+  },
+  "homepage": "https://github.com/JuliaTe/task-app-REST-API#readme"
+}
