@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JuliaTe/task-app-REST-API/issues"
   },
-  "homepage": "https://github.com/JuliaTe/task-app-REST-API#readme"
+  "homepage": "https://github.com/JuliaTe/task-app-REST-API#readme",
+  "dependencies": {
+    "mongodb": "^3.6.1"
+  }
 }
