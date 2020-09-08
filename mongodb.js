@@ -104,4 +104,24 @@ MongoClient.connect(connectionUrl, { useNewUrlParser: true }, (error, client) =>
   }).catch((error) => {
     console.log('Failed')
   })
+
+  // Delete one
+  
+  db.collection('users').deleteMany({
+    age: 29
+  }).then((result) => {
+    console.log(result)
+  }).catch((error) => {
+    console.log(error)
+  })
+
+  db.collection('users').deleteOne({
+    _id: new ObjectID('5f52ac62b4989573c6278590')
+  }).then((result) => {
+    console.log(result)
+  }).catch((error) => {
+    console.log(error)
+  })
+
+
 })
