@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
 
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
   useNewUrlParser: true,
@@ -8,11 +9,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
 const User = mongoose.model('User', {
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    loewrcase: true,
+    validate(value) { // Adding validation using validator package
+      if (!validator.isEmail(value)) {
+        throw new Error('Email is invalid')
+      }
+    }
   },
   age: {
     type: Number,
-    validate(value) {
+    default: 0,
+    validate(value) { // Adding custom validation
       if (value < 0) {
         throw new Error('Age must be a positive number')
       }
@@ -21,8 +35,8 @@ const User = mongoose.model('User', {
 })
 
 const me = new User({
-  name: 'Thea',
-  age: -9
+  name: 'Thea  ',
+  email: 'jules@jul.com  '
 })
 
 me.save().then(() => {
