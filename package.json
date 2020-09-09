@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/JuliaTe/task-app-REST-API#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mongodb": "^3.6.1",
     "mongoose": "^5.10.4",
     "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
