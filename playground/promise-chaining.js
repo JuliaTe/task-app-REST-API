@@ -11,3 +11,4 @@ User.findByIdAndUpdate('5f594c6451315e98eef0015a', { age: 1 }).then((user) => {
 }).catch((e) => {
   console.log(e)
 })
+
