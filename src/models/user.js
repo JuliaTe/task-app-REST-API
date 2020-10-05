@@ -40,13 +40,22 @@ const userSchema = new mongoose.Schema({
                 throw new Error('Age must be a postive number')
             }
         }
-    }
+    },
+    tokens: [{ // no need to add validations as it's generated and not provided by the user
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 })
 
 // methods are available on instances, called instance methods
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id }, 'thisnewtoken')
+
+    user.tokens = user.tokens.concat({ token })
+    await user.save()
     return token
 }
 
