@@ -17,6 +17,12 @@ const port = process.env.PORT || 3000
 // })
 
 
+// app.use((req, res, next) => {
+//   if (req) {
+//     res.status(503).send('Site is under maintenance. Please try back soon')
+//   }
+// })
+
 app.use(express.json())
 app.use(userRouter)
 app.use(taskRouter)
