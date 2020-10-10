@@ -16,6 +16,11 @@ const router = new express.Router()
 //     }
 // })
 
+// to get a profile for currently authenticated user
+router.get('/users/me', auth, async (req, res) => {
+  res.send(req.user)
+})
+
 router.post('/users/login', async (req, res) => {
   try {
     const user = await User.findByCredentials(req.body.email, req.body.password)
@@ -26,7 +31,7 @@ router.post('/users/login', async (req, res) => {
   }
 })
 
-router.get('/users', auth,  async (req, res) => { //adding auth middlewear
+router.get('/users',  async (req, res) => { //adding auth middlewear
     try {
         const users = await User.find({})
         res.send(users)
