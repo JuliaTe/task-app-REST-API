@@ -3,18 +3,17 @@ const User = require('../models/user')
 const auth = require('../middlewear/auth')
 const router = new express.Router()
 
-// This was for learning purposes
-// router.post('/users', async (req, res) => {
-//     const user = new User(req.body)
+router.post('/users', async (req, res) => {
+    const user = new User(req.body)
     
-//     try {
-//        await user.save()
-//        const token = await user.generateAuthToken()
-//        res.status(201).send({ user, token })
-//     } catch (e) {
-//         res.status(400).send(e)
-//     }
-// })
+    try {
+       await user.save()
+       const token = await user.generateAuthToken()
+       res.status(201).send({ user, token })
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 // to get a profile for currently authenticated user
 router.get('/users/me', auth, async (req, res) => {
