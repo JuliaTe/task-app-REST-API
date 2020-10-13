@@ -3,6 +3,7 @@ require('./db/mongoose')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
 
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -57,3 +58,16 @@ app.listen(port, () => {
 // }
 
 // myFunction()
+
+// why .toJSON hides data
+
+// const pet = {
+//   name: "Lora"
+// }
+
+// pet.toJSON = function() {
+//   return {}
+// }
+
+// console.log(JSON.stringify(pet))
+
