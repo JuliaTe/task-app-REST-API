@@ -61,21 +61,22 @@ router.get('/users',  async (req, res) => { //adding auth middlewear
     }
 })
 
-router.get('/users/:id', async (req, res) => {
-    const _id = req.params.id
+// This was for learning purposes. A user shouldn't be retrieved by id.
+// router.get('/users/:id', async (req, res) => {
+//     const _id = req.params.id
 
-    try {
-        const user = await User.findById(_id)
+//     try {
+//         const user = await User.findById(_id)
 
-        if (!user) {
-            return res.status(404).send()
-        }
+//         if (!user) {
+//             return res.status(404).send()
+//         }
 
-        res.send(user)
-    } catch (e) {
-        res.status(500).send()
-    }
-})
+//         res.send(user)
+//     } catch (e) {
+//         res.status(500).send()
+//     }
+// })
 
 router.patch('/users/:id', async (req, res) => {
     const updates = Object.keys(req.body)
