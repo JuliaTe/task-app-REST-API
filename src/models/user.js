@@ -49,6 +49,13 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+// not stored in DB, for Mongoose to know the relationships
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 // methods are available on instances, called instance methods
 userSchema.methods.generateAuthToken = async function () {
     const user = this
