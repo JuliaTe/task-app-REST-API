@@ -7,15 +7,6 @@ const taskRouter = require('./routers/task')
 const app = express()
 const port = process.env.PORT || 3000
 
-const multer = require('multer')
-const upload = multer({
-  dest: 'images'
-})
-
-app.post('/upload', upload.single('upload'), (req, res) => {
-  res.send()
-})
-
 // middlewear
 // app.use((req, res, next) => { // next is specific to middlewear
 //   if (req.method === 'GET') {
@@ -79,8 +70,8 @@ app.listen(port, () => {
 
 // console.log(JSON.stringify(pet))
 
-const Task = require('./models/task')
-const User = require('./models/user')
+// const Task = require('./models/task')
+// const User = require('./models/user')
 
 // const main = async () => {
   // const task = await Task.findById('5f864e2c5f147672424423b4')
@@ -94,3 +85,25 @@ const User = require('./models/user')
 
 // main()
 
+const multer = require('multer')
+const upload = multer({
+  dest: 'images',
+  limit: {
+    fileSize: 1000000
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(doc|docs)$/)) {
+      return cb(new Error('Please upload a Word document'))
+    }
+  }
+})
+
+// const errorMiddleware = (req, res, next) => {
+//   throw new Error("This is middlewear")
+// }
+
+app.post('/upload', upload.single('upload'), (req, res) => {
+  res.send()
+}, (error, req, res, next) => {
+  res.status(400).send({ error: error.message })
+})
