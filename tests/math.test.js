@@ -1,4 +1,5 @@
-const { calculateTip } = require('../src/math')
+const { calculateTip, fahrenheitToCelsius, celsiusToFahrenheit } = 
+require('../src/math')
 
 test('Should calculate total with tip', () => {
   const total = calculateTip(10, .3)
@@ -15,7 +16,10 @@ test('SHould calculate total with default tip', () => {
   expect(total).toBe(12.5)
 })
 
+test('Should convert Fahrenheits to Celsius', () => {
+  expect(fahrenheitToCelsius(32)).toBe(0)
+})
 
-test("Hello world", () => {
-
+test('Should convert Celsius to Fahrenheit', () => {
+  expect(celsiusToFahrenheit(0)).toBe(32)
 })
