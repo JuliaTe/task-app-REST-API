@@ -14,7 +14,6 @@ const add = (a, b) => {
       if (a < 0 || b < 0) {
         return reject('Numbers must be no-negative')
       }
-
       resolve(a + b)
     }, 2000)
   })
