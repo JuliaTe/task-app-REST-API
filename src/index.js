@@ -1,11 +1,17 @@
-const express = require('express')
-require('./db/mongoose')
-const userRouter = require('./routers/user')
-const taskRouter = require('./routers/task')
-
-
-const app = express()
+const app = require('./app')
 const port = process.env.PORT
+
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
+})
+// const express = require('express')
+// require('./db/mongoose')
+// const userRouter = require('./routers/user')
+// const taskRouter = require('./routers/task')
+
+
+// const app = express()
+// const port = process.env.PORT
 
 // middlewear
 // app.use((req, res, next) => { // next is specific to middlewear
@@ -23,15 +29,12 @@ const port = process.env.PORT
 //   }
 // })
 
-app.use(express.json())
-app.use(userRouter)
-app.use(taskRouter)
+// app.use(express.json())
+// app.use(userRouter)
+// app.use(taskRouter)
 
 
 
-app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
 
 // const bcrypt = require('bcryptjs')
 
@@ -85,25 +88,25 @@ app.listen(port, () => {
 
 // main()
 
-const multer = require('multer')
-const upload = multer({
-  dest: 'images',
-  limit: {
-    fileSize: 1000000
-  },
-  fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(doc|docs)$/)) {
-      return cb(new Error('Please upload a Word document'))
-    }
-  }
-})
+// const multer = require('multer')
+// const upload = multer({
+//   dest: 'images',
+//   limit: {
+//     fileSize: 1000000
+//   },
+//   fileFilter(req, file, cb) {
+//     if (!file.originalname.match(/\.(doc|docs)$/)) {
+//       return cb(new Error('Please upload a Word document'))
+//     }
+//   }
+// })
 
 // const errorMiddleware = (req, res, next) => {
 //   throw new Error("This is middlewear")
 // }
 
-app.post('/upload', upload.single('upload'), (req, res) => {
-  res.send()
-}, (error, req, res, next) => {
-  res.status(400).send({ error: error.message })
-})
+// app.post('/upload', upload.single('upload'), (req, res) => {
+//   res.send()
+// }, (error, req, res, next) => {
+//   res.status(400).send({ error: error.message })
+// })
