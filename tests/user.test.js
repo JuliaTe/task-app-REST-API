@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const app = require('../src/app')
 const User = require('../src/models/user')
+const e = require('express')
 
 // Creating a default user
 const userOneId = new mongoose.Types.ObjectId()
@@ -22,11 +23,25 @@ beforeEach(async () => {
 })
 
 test('Should sign up a new user', async () => {
-  await request(app).post('/users').send({
+  const response = await request(app).post('/users').send({
     name: 'Jules T',
     email: 'julest4@email.com',
     password: 'MyPass777!'
   }).expect(201)
+
+  // Assert that teh database changed correctly
+  const user = await User.findById(response.body.user._id)
+  expect(user).not.toBeNull()
+
+  // Assertions about the response
+  expect(response.body).toMatchObject({
+    user: {
+      name: 'Jules T',
+      email: 'julest4@email.com'
+    },
+    token: user.tokens[0].token
+  })
+  expect(user.password).not.toBe('MyPass777!')
 })
 
 test('Should login existing user', async () => {
